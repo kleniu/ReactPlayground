@@ -1,0 +1,14 @@
+{
+  "name": "es6-playground",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "esbuild app.jsx --bundle --outfile=out.js && node out.js "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.17.16"
+  }
+}
