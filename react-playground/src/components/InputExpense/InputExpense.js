@@ -1,13 +1,14 @@
 import ExpenseForm from './ExpenseForm';
 import './InputExpense.css';
 
-const InputExpense = () => {
+const InputExpense = (props) => {
     const expenseFormSubmitHandler = (submitedData) => {
         const expenseData = {
             ...submitedData,
             id: `e${Math.random().toString().split('.')[1]}`
         }
-        console.log(expenseData);
+        // pass data to parent
+        props.onNewExpense(expenseData);
     }
 
     return (

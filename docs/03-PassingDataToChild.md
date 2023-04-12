@@ -1,0 +1,2 @@
+### Brudnopis
+Uzywaj `props`
