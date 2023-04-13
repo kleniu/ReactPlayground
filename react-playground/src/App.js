@@ -1,32 +1,39 @@
 import Expenses from './components/Expenses/Expenses';
 import InputExpense from './components/InputExpense/InputExpense';
 
+import {useState} from 'react';
+
+const INITIAL_DATA = [
+  {
+    id: "e1",
+    title: "Toilet Paper",
+    amount: 94.12,
+    date: new Date(2021, 7, 14),
+  },
+  { id: "e2", title: "New TV", amount: 799.49, date: new Date(2022, 2, 12) },
+  {
+    id: "e3",
+    title: "Car Insurance",
+    amount: 294.67,
+    date: new Date(2023, 2, 28),
+  },
+  {
+    id: "e4",
+    title: "New Desk (Wooden)",
+    amount: 450,
+    date: new Date(2023, 5, 12),
+  },
+];
+
 const App = () => {
-  const expenses = [
-    {
-      id: "e1",
-      title: "Toilet Paper",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-    {
-      id: "e3",
-      title: "Car Insurance",
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e4",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-  ];
+  const [ expenses, setExpenses] = useState(INITIAL_DATA);
 
   const newExpenseHandler = (expenseData) => {
-    console.log('From App.js');
-    console.log(expenseData);
+    // add new expense to the beginning of the array controlled by state BUT ...
+    // remember use the arrow function to update state based on previous state
+    setExpenses( (oldExpenses) => {
+      return [expenseData, ...oldExpenses];
+    } );
   }
 
   return (
