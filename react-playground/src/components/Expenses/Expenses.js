@@ -1,6 +1,7 @@
-import ExpenseItem from "./ExpenseItem";
+import ExpensesList from "./ExpensesList";
 import ExpensesFilter from "./ExpensesFilter";
 import CardWrapper from "../Commons/CardWrapper";
+import ExpensesChart from "./ExpensesChart";
 import { useState } from "react";
 import "./Expenses.css";
 
@@ -9,12 +10,11 @@ const Expenses = (props) => {
 
   const filterChangeHandler = (filter) => {
     setFilterData(filter);
-    //console.log(filter);
   };
 
-  const filteredExpenses = props.expenses.filter( (element) => {
-    return element.date.getFullYear().toString() === filterYear; 
-  } )
+  const filteredExpenses = props.expenses.filter((element) => {
+    return element.date.getFullYear().toString() === filterYear;
+  });
 
   return (
     <CardWrapper className="expenses">
@@ -22,19 +22,10 @@ const Expenses = (props) => {
         onFilterChange={filterChangeHandler}
         selectedFilter={filterYear}
       />
-      {
-        /* map returns the array -> React automatically renders array of JSX objects */
-        filteredExpenses.map((element) => {
-          return (
-            <ExpenseItem 
-                key={element.id}
-                title={element.title}
-                amount={element.amount}
-                date={element.date}
-            />
-          );
-        })
-      }
+      <ExpensesChart expenses={filteredExpenses}/>
+      <li>
+        <ExpensesList items={filteredExpenses} />
+      </li>
     </CardWrapper>
   );
 };
