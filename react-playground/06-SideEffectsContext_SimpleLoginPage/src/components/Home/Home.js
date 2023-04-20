@@ -6,14 +6,29 @@ import classes from './Home.module.css';
 import GlobalContext from '../../state/global-data';
 
 const Home = (props) => {
-  const authCtx = useContext(GlobalContext);
+  const ctxGlobal = useContext(GlobalContext);
+ 
+  const buttonMakeDarkHandler = () => {
+    //console.log("DEBUG theme button clicked");
+    ctxGlobal.onThemeChange('DARK');
+  }
+
+  const buttonMakeLightHandler = () => {
+    //console.log("DEBUG theme button clicked");
+    ctxGlobal.onThemeChange('LIGHT');
+  }
 
   return (
     <Card className={classes.home}>
       <h1>Welcome back!</h1>
-      <Button onClick={authCtx.onLogout}>Logout</Button>
+      <p>Current Theme: {ctxGlobal.theme}</p>
+      <Button onClick={buttonMakeDarkHandler}>Change theme to "DARK"</Button>
+      <p></p>
+      <Button onClick={buttonMakeLightHandler}>Change theme to "LIGHT"</Button>
     </Card>
   );
 };
 
 export default Home;
+
+// onClick={ctxGlobal.onThemeChange('DARK')}
